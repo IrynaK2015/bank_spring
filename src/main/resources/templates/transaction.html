@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>New transaction</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/clients}">Clients</a>
+            </li>
+            <li>
+                <a th:href="@{/currencies}">Currencies</a>
+            </li>
+        </ul>
+    </div>
+    <div th:if="${error ne null}" class="error">
+        <span th:text="${error}"></span>
+    </div>
+    <div class="form">
+        <form role="form" action="/transaction/add" method="post">
+            <h2>Create transaction</h2>
+            <p>All fields below are mandatory</p>
+            <div>
+                <label>Account</label>
+                <span th:text="${account.iban}"></span>
+            </div>
+            <div>
+                <label>Balance</label>
+                <span th:text="${account.balance} + ' ' + ${account.currency.code}"></span>
+            </div>
+            <div>
+                <label>Operation</label>
+                <select name="operation">
+                    <option value="+">deposit</option>
+                    <option value="-">withdrow</option>
+                </select>
+            </div>
+            <div>
+                <label>Amount</label>
+                <input type="text" name="amount" placeholder="Min amount is 10"> <span th:text="${account.currency.code}"></span>
+            </div>
+            <div>
+                <label>Comment</label>
+                <input type="text" name="comment" placeholder="Cash">
+            </div>
+            <div>
+                <input hidden name="account_id" th:value="*{account.id}"/>
+                <input type="submit" value="SAVE">
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

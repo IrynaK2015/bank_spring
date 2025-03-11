@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Currencies</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/clients}">Clients</a>
+            </li>
+            <li>
+                <a th:href="@{/currencies}">Currencies</a>
+            </li>
+        </ul>
+    </div>
+<h1>Current currencies rate</h1>
+    <p><span th:text="'Found currencies: ' + ${total}"></span></p>
+<table>
+    <thead>
+        <th width="5%">Code</th>
+        <th width="15%">Name</th>
+        <th width="15%">Rate</th>
+    </thead>
+    <tbody>
+        <tr th:each="currencyrate:${currencies}">
+            <td th:text="${currencyrate.code}"></td>
+            <td th:text="${currencyrate.name}"></td>
+            <td th:text="${currencyrate.rate}"></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clients</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div>
+        <ul class="menu">
+            <li>
+                <a th:href="@{/clients}">Clients</a>
+            </li>
+            <li>
+                <a th:href="@{/currencies}">Currencies</a>
+            </li>
+        </ul>
+    </div>
+<h1>Bank clients</h1>
+<p class="pnew"><a th:href="@{/client/new}" alt = "Edit client">Create new client</a></p>
+<p><span th:text="'Found clients: ' + ${total}"></span></p>
+<table>
+    <thead>
+        <th width="5%">ID</th>
+        <th width="20%">Full name</th>
+        <th width="10%">Tax number</th>
+        <th>Address</th>
+    </thead>
+    <tbody>
+        <tr th:each="client:${clients}">
+            <td>
+                <a th:href="@{/client/{id}(id=${client.id})}" title = "Edit client">
+                    <span th:text="${client.id}"></span>
+                </a>
+            </td>
+            <td th:text="${client.firstName} + ' ' + ${client.lastName}"></td>
+            <td th:text="${client.taxNumber}"></td>
+            <td th:text="${client.address}"></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>
