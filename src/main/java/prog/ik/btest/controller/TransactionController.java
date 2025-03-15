@@ -7,6 +7,7 @@ import prog.ik.btest.model.Account;
 import prog.ik.btest.model.Transaction;
 import prog.ik.btest.service.AccountService;
 import prog.ik.btest.service.TransactionService;
+import prog.ik.btest.service.Utility;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -77,6 +78,11 @@ public class TransactionController {
         }
 
         return trans;
+    }
+
+    @ModelAttribute("username")
+    public String getUsername() {
+        return Utility.getCurrentUser().getUsername();
     }
 
 

@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns="http://www.w3.org/1999/xhtml">
+<body>
+<div th:fragment="menu(username)">
+    <div>
+
+        <ul class="menu">
+            <li class="user">I'm <span th:text="${username}"></span></li>
+            <li>
+                <a th:href="@{/clients}">Clients</a>
+            </li>
+            <li>
+                <a th:href="@{/currencies}">Currencies</a>
+            </li>
+            <li>
+                <a th:href="@{/logout}">Logout</a>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

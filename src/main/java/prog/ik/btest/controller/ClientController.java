@@ -4,15 +4,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import prog.ik.btest.model.Account;
 import prog.ik.btest.model.Client;
 import prog.ik.btest.model.Currencyrate;
 import prog.ik.btest.service.ClientService;
 import prog.ik.btest.service.CurrencyrateService;
+import prog.ik.btest.service.Utility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +31,7 @@ public class ClientController {
 
     @GetMapping("/client/new")
     public String clientAddPage(Model model) {
+
         return "client_new";
     }
 
@@ -143,6 +142,11 @@ public class ClientController {
         clientService.updateClient(client);
 
         return "redirect:/client/" + client.getId();
+    }
+
+    @ModelAttribute("username")
+    public String getUsername() {
+        return Utility.getCurrentUser().getUsername();
     }
 
     private long getPageCount() {

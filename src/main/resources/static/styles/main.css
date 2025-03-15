@@ -82,6 +82,11 @@ ul.menu {
     border-radius: 5px;
     width: 100px;
 }
+.menu li.user {
+    background-color: white;
+    margin-right: 30px;
+    width: auto;
+}
 .menu li a:hover:not(.active) {
     background-color: rgba(0, 0, 0, 0.15);
     color: rgba(0, 0, 0, 0.9);

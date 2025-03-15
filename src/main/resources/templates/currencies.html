@@ -6,16 +6,7 @@
 </head>
 <body>
 <div class="container">
-    <div>
-        <ul class="menu">
-            <li>
-                <a th:href="@{/clients}">Clients</a>
-            </li>
-            <li>
-                <a th:href="@{/currencies}">Currencies</a>
-            </li>
-        </ul>
-    </div>
+    <div th:replace="fragments/menu::menu(username=${username})"></div>
 <h1>Current currencies rate</h1>
     <p><span th:text="'Found currencies: ' + ${total}"></span></p>
 <table>

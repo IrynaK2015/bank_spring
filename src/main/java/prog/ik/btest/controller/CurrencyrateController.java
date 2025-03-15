@@ -3,8 +3,10 @@ package prog.ik.btest.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import prog.ik.btest.model.Currencyrate;
 import prog.ik.btest.service.CurrencyrateService;
+import prog.ik.btest.service.Utility;
 
 import java.util.Objects;
 
@@ -38,5 +40,10 @@ public class CurrencyrateController
         model.addAttribute("total", currencyrateService.count());
 
         return "currencies";
+    }
+
+    @ModelAttribute("username")
+    public String getUsername() {
+        return Utility.getCurrentUser().getUsername();
     }
 }
