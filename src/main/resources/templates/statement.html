@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Account Statement</title>
+    <link th:href="@{/styles/main.css}" rel="stylesheet" />
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments/menu::menu(username=${username})"></div>
+    <h1>Account Statement <span th:text="${account.iban}"></span></h1>
+    <p><span th:text="'Balance: ' + ${account.balance}"></span></p>
+    <table>
+        <thead>
+        <th width="5%">Date</th>
+        <th width="20%">Amount</th>
+        <th width="10%">Comment</th>
+        </thead>
+        <tbody>
+        <tr th:each="transaction:${transactions}">
+            <td th:text="${transaction.created}"></td>
+            <td th:text="${transaction.operation} + ' ' + ${transaction.amount}"></td>
+            <td th:text="${transaction.comment}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
