@@ -7,6 +7,9 @@
 <body>
 <div class="container">
     <div th:replace="fragments/menu::menu(username=${username})"></div>
+    <div th:if="${infoMsg ne null}" class="error">
+        <span th:text="${infoMsg}"></span>
+    </div>
 <h1>Bank clients</h1>
 <p class="pnew"><a th:href="@{/client/new}" alt = "Edit client">Create new client</a></p>
 <p><span th:text="'Found clients: ' + ${total}"></span></p>

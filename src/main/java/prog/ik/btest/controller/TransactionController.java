@@ -5,12 +5,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import prog.ik.btest.model.Account;
 import prog.ik.btest.model.Transaction;
-import prog.ik.btest.service.AccountService;
-import prog.ik.btest.service.TransactionService;
-import prog.ik.btest.service.Utility;
+import prog.ik.btest.service.*;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.List;
+
 
 @Controller
 public class TransactionController {
@@ -34,6 +34,30 @@ public class TransactionController {
         model.addAttribute("account", account);
 
         return "transaction";
+    }
+
+    @GetMapping("/account/{id}/statement/{days}")
+    public String getStatement(@PathVariable("id") Long accountId,
+                               @PathVariable Integer days,
+                                Model model) {
+        Account account = accountService.findAccountById(accountId);
+        if (Objects.isNull(account)) {
+            model.addAttribute("error", "Account not found");
+
+            return "redirect:/clients";
+        }
+
+        if (days <= 0) days = Constants.STATEMENT_DAYS_DEDAULT;
+        List<Transaction> transactions = transactionService.findByDateRange(account, days);
+        if (transactions.size() == 0) {
+            model.addAttribute("error", "No transactions found");
+
+            return "redirect:/clients";
+        }
+        model.addAttribute("account", account);
+        model.addAttribute("transactions", transactions);
+
+        return "statement";
     }
 
     @PostMapping(value="/transaction/add")

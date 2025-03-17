@@ -8,8 +8,6 @@
 <div class="container">
     <div th:if="${param.error ne null}" class="error">
         <span th:text="${param.error}"></span>
-        <spring:message code="message.badCredentials">
-        </spring:message>
     </div>
     <div class="form">
         <h2>Login</h2>

@@ -8,6 +8,10 @@ import prog.ik.btest.repository.AccountRepository;
 import prog.ik.btest.repository.TransactionRepository;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Service
 public class TransactionService {
@@ -29,5 +33,17 @@ public class TransactionService {
         transRepository.save(transaction);
         account.setBalance(balance);
         accountRepository.save(account);
+    }
+
+    @Transactional
+    public List<Transaction> findByDateRange(Account account, int days) {
+        LocalDate toDate = LocalDate.now().plusDays(1);
+        LocalDate fromDate = LocalDate.now().minusDays(days);
+
+        return transRepository.findByDateRange(
+            account,
+            java.sql.Date.valueOf(fromDate),
+            java.sql.Date.valueOf(toDate)
+        );
     }
 }

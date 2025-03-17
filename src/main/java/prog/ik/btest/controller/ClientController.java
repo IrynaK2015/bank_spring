@@ -51,6 +51,8 @@ public class ClientController {
         client.addAccount(new Account(client, currencyrateService.findByCode("UAH")));
         clientService.addClient(client);
 
+        // send registration email
+
         return "redirect:/client/" + client.getId();
     }
 

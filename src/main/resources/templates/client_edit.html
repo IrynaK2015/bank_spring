@@ -49,6 +49,7 @@
             <th>Balance</th>
             <th>Currency</th>
             <th>Transaction</th>
+            <th>Statement</th>
         </thead>
         <tbody th:with="accounts=${client.getAccounts()}">
             <tr th:each="account:${accounts}">
@@ -58,6 +59,9 @@
                 <td th:text="${account.getCurrency().getCode()}"></td>
                 <td>
                     <a th:href="@{/account/{id}/transaction/new(id=${account.id})}">create</a>
+                </td>
+                <td>
+                    <a th:href="@{/account/{id}/statement/0(id=${account.id})}">show statement</a>
                 </td>
             </tr>
         </tbody>
